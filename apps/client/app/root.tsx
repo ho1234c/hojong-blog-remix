@@ -1,4 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
+import codeHikeStyles from "@code-hike/mdx/dist/index.css";
+import type { MetaFunction, LinksFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -13,6 +14,10 @@ export const meta: MetaFunction = () => ({
   title: "hojong blog",
   viewport: "width=device-width,initial-scale=1",
 });
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: codeHikeStyles },
+];
 
 export default function App() {
   return (

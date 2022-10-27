@@ -1,32 +1,58 @@
+import { LoaderFunction, json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import parseFrontMatter from "front-matter";
+import fs from "fs";
+import path from "path";
+import { Post } from "~/types";
+import { Link } from "@remix-run/react";
+
+type LoaderData = {
+  posts: Post[];
+};
+
+export async function getPosts() {
+  const postsPath = await fs.promises.readdir(`${__dirname}/../../posts`, {
+    withFileTypes: true,
+  });
+
+  const posts = await Promise.all(
+    postsPath.map(async (dirent) => {
+      const file = await fs.promises.readFile(
+        path.join(`${__dirname}/../../posts`, dirent.name)
+      );
+
+      const { attributes } = parseFrontMatter<{
+        title: string;
+        description: string;
+        date: string;
+      }>(file.toString());
+
+      return {
+        slug: dirent.name.replace(/\.mdx/, ""),
+        title: attributes.title,
+      };
+    })
+  );
+
+  return json({ posts });
+}
+
+export const loader: LoaderFunction = async () => {
+  return getPosts();
+};
+
 export default function Index() {
+  const { posts } = useLoaderData<LoaderData>();
+
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div>
+      {posts.map((post, idx) => {
+        return (
+          <div key={idx}>
+            <Link to={`/posts/${post.slug}`}>{post.title}</Link>
+          </div>
+        );
+      })}
     </div>
   );
 }

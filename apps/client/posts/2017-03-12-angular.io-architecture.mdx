@@ -5,10 +5,9 @@ title: "Angular.io - GUIED - ARCHITECTURE"
 tags: ["technology", "translation"]
 ---
 
-이 글은 <a href="https://angular.io/docs/ts/latest/guide/architecture.html" target="_blank">Angular.io의 Guied Architecture</a>를 번역한 글입니다. 오역 및 의역이 있을 수 있습니다.
+이 글은 [Angular.io의 Guied Architecture](https://angular.io/docs/ts/latest/guide/architecture.html)를 번역한 글입니다. 오역 및 의역이 있을 수 있습니다.
 
-
------
+---
 
 Angular는 HTML과 javascript혹은 javascript로 컴파일되는 typescript로 클라이언트 어플리케이션을
 만들기 위한 프레임워크입니다.
@@ -17,7 +16,7 @@ Angular는 HTML과 javascript혹은 javascript로 컴파일되는 typescript로 
 
 Angular는 몇몇의 코어 라이브러리들과 부수적인 라이브러리들로 구성됩니다.
 
-당신은 Angular의 마크업이 포함된 HTML템플릿을 작성하고 그것들을 조작하기 위해 컴포넌트 클래스를 추가합니다. 
+당신은 Angular의 마크업이 포함된 HTML템플릿을 작성하고 그것들을 조작하기 위해 컴포넌트 클래스를 추가합니다.
 또한 어플리케이션로직은 서비스에서 처리합니다. 그리고 컴포넌트와 서비스는 모듈속에 넣습니다.
 
 그후, 부트스트래핑된 루트모듈을 실행합니다. Angular는 제공된 지침에 따라 당신의 어플리케이션의 컨텐츠를 브라우저에 보여주고 유저의 인터랙션에 응답합니다.
@@ -39,25 +38,26 @@ Angular는 몇몇의 코어 라이브러리들과 부수적인 라이브러리�
 
 이것들에 대해 배워봅시다.
 
-이 페이지의 코드들은 이곳을 참고하세요 <a href="https://angular.io/resources/live-examples/architecture/ts/eplnkr.html" target="_blank">
-live example</a> / <a href="https://angular.io/resources/zips/architecture/architecture.zip">downloadable example</a>
+이 페이지의 코드들은 이곳을 참고하세요
+[live example](https://angular.io/resources/live-examples/architecture/ts/eplnkr.html) / [downloadable example](https://angular.io/resources/zips/architecture/architecture.zip)
 
 ## Modules (모듈)
 
 ![module](../images/2017-03-12-angular.io-architecture/module.png)
 
-Angular는 모듈 친화적이며 *Angular modules* 혹은 *ngModules*이라는 모듈시스템을 자체적으로 가지고 있습니다.
-Angular modules은 매우 중요합니다. 이 페이지에서도 소개하지만 <a href="https://angular.io/docs/ts/latest/guide/ngmodule.html" target="_blank">여기</a>서 더 자세히 설명합니다.
+Angular는 모듈 친화적이며 _Angular modules_ 혹은 *ngModules*이라는 모듈시스템을 자체적으로 가지고 있습니다.
+Angular modules은 매우 중요합니다. 이 페이지에서도 소개하지만 [여기](https://angular.io/docs/ts/latest/guide/ngmodule.html)서 더 자세히 설명합니다.
 
-모든 Angular 앱은 최소한 <a href="https://angular.io/docs/ts/latest/guide/appmodule.html">the root modules</a> 이라는 Angular modules을 하나씩은 가지고 있습니다. 보통 **AppModule**이라 부릅니다.
+모든 Angular 앱은 최소한 [the root modules](https://angular.io/docs/ts/latest/guide/appmodule.html) 이라는 Angular modules을 하나씩은 가지고 있습니다. 보통 **AppModule**이라 부릅니다.
 
 작은 어플리케이션이라면 root modules하나만 존재하는 경우도 있지만, 일반적으로 많은 모듈들이 어플리케이션의 도메인, 워크플로우등의 기능들을 위해서 유기적으로 동작합니다.
 
 Angular module은 어떤 모듈이든 간에 **@NgModule** 데코레이터를 사용합니다.
 
 > 데코레이터는 javascript 클래스를 변형시키는 함수입니다. Angular는 메타데이터를 클래스에 적용시키기 위한 많은 데코레이터들을 가지고 있고
-이는 그 클래스의 의미가 뭔지, 어떻게 동작하는지를 나타냅니다.  
-<a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.x5c2ndtx0" target="_blank">데코레이터에 대해 더 알아보기</a>
+> 이는 그 클래스의 의미가 뭔지, 어떻게 동작하는지를 나타냅니다.
+
+[데코레이터에 대해 더 알아보기](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.x5c2ndtx0)
 
 **NgModule**은 모듈의 특성을 기술하는 하나의 메타데이터 객체를 취하는 함수입니다. 가장 중요한 특성은 다음과 같습니다.
 
@@ -65,22 +65,22 @@ Angular module은 어떤 모듈이든 간에 **@NgModule** 데코레이터를 �
 - **exports** : declarations중에서 다른 모듈에서 사용할 모듈을 기술.
 - **imports** : 다른곳에서 export된 모듈 중 이 컴포넌트 템플릿에서 필요한 모듈을 기술.
 - **providers** : 글로벌 컬렉션을 위한 service의 생성자. 이는 앱 안의 어느 곳에서든 사용할 수 있습니다.
-- **bootstrap** : root component라고 하는, 모든 다른 앱 뷰에서 호스트 하는 메인 어플리케이션 뷰. 
+- **bootstrap** : root component라고 하는, 모든 다른 앱 뷰에서 호스트 하는 메인 어플리케이션 뷰.
 
 다음은 간단한 root modules의 예 입니다.
 
 ```javascript
 // src/app/app.module.ts
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 @NgModule({
-  imports:      [ BrowserModule ],
-  providers:    [ Logger ],
-  declarations: [ AppComponent ],
-  exports:      [ AppComponent ],
-  bootstrap:    [ AppComponent ]
+  imports: [BrowserModule],
+  providers: [Logger],
+  declarations: [AppComponent],
+  exports: [AppComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 > 여기서 AppComponent의 export는 그냥 export를 하는 방법을 보여주기 위함입니다. 사실 여기서는 필요하지 않습니다. 다른 모듈들에서 root module을 import할 필요가 없기 때문에 root module이 export되는 것은 무의미합니다.
@@ -90,8 +90,8 @@ root module을 bootstrapping해서 어플리케이션을 실행하세요. main.t
 
 ```javascript
 // src/main.ts
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { AppModule } from "./app/app.module";
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 ```
@@ -100,20 +100,20 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 
 @NgModule을 사용한 Angular module은 Angular의 기본적인 특성입니다.
 
-javascript또한 javascript 객체를 관리하기 위한 그 자체 모듈 시스템을 가지고 있습니다. 
+javascript또한 javascript 객체를 관리하기 위한 그 자체 모듈 시스템을 가지고 있습니다.
 각각의 javascript 파일은 모듈이고 정의된 모든 객체는 모듈에 속합니다. 모듈은 export 키워드를 통해서
 공개됩니다. 또한 import 키워드로 공개된 객체에 접근합니다.
 
 ```javascript
-import { NgModule }     from '@angular/core';
-import { AppComponent } from './app.component';
+import { NgModule } from "@angular/core";
+import { AppComponent } from "./app.component";
 ```
 
 ```javascript
-export class AppModule { }
+export class AppModule {}
 ```
 
-> <a href="http://exploringjs.com/es6/ch_modules.html">javascrirpt 모듈에 대해서 알아보기</a>
+> [javascrirpt 모듈에 대해서 알아보기](http://exploringjs.com/es6/ch_modules.html)
 
 이 두가지는 상호보완적인 모듈시스템입니다. 두가지 모두 적절히 사용하세요.
 
@@ -127,22 +127,22 @@ Angular 모듈은 javascript 모듈컬렉션으로 제공합니다. 라이브러
 예를들어 **@angular/core**의 **Component** 데코레이터를 불러오기 위해서는 다음과 같이 할 수 있습니다.
 
 ```javascript
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 ```
 
 import문을 통해서 Angular라이브러리를 불러 올 수 있습니다.
 
 ```javascript
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from "@angular/platform-browser";
 ```
 
-그리고 root module에서 **BrowserModule**이 필요하다고 하면, 이를 **@NgModule*에 추가합니다.
+그리고 root module에서 **BrowserModule**이 필요하다고 하면, 이를 \**@NgModule*에 추가합니다.
 
 이는 Angular와 javascript의 모듈시스템을 같이 이용한 예입니다.
 
 두 시스템 모두 import와 export라는 키워드를 공유하기 때문에 헷갈릴 수 있습니다. 하지만 많이 해보면 알게될겁니다.
 
-> <a href="https://angular.io/docs/ts/latest/guide/ngmodule.html">Angular modules에 대해 알아보기</a>
+> [Angular modules에 대해 알아보기](https://angular.io/docs/ts/latest/guide/ngmodule.html)
 
 ## Components (컴포넌트)
 
@@ -177,7 +177,7 @@ export class HeroListComponent implements OnInit {
 }
 ```
 
-Angular는 사용자의 움직임에 따라 컴포넌트들을 생성, 수정, 제거합니다. 당신의 앱은 위에서 **ngOnInit()**이 선언 된 것처럼 <a href="https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html" target="_blank">라이프사이클 훅</a>을 통해서 특정 액션을 취할 수 있습니다.
+Angular는 사용자의 움직임에 따라 컴포넌트들을 생성, 수정, 제거합니다. 당신의 앱은 위에서 **ngOnInit()**이 선언 된 것처럼 [라이프사이클 훅](https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html)을 통해서 특정 액션을 취할 수 있습니다.
 
 ## Templates
 
@@ -192,22 +192,22 @@ Angular는 사용자의 움직임에 따라 컴포넌트들을 생성, 수정, �
 <h2>Hero List</h2>
 <p><i>Pick a hero from the list</i></p>
 <ul>
-  <li *ngFor="let hero of heroes" (click)="selectHero(hero)">
-    {{hero.name}}
-  </li>
+  <li *ngFor="let hero of heroes" (click)="selectHero(hero)">{{hero.name}}</li>
 </ul>
 
 <hero-detail *ngIf="selectedHero" [hero]="selectedHero"></hero-detail>
 ```
 
-``` <h2> ```나 ```<p>``` 같은 엘리먼트들은 기존의 HTML과 같지만 {% raw %} {{hero.name}} {% endraw %}, **\*ngFor**, **(click)**, **[hero]**, ```<hero-detail>``` 은
-<a href="https://angular.io/docs/ts/latest/guide/template-syntax.html" target="_blank">Angular의 템플릿 문법</a>을 사용합니다.
+`<h2>`나 `<p>` 같은 엘리먼트들은 기존의 HTML과 같지만 `{% raw %} {{hero.name}} {% endraw %}`, **\*ngFor**, **(click)**, **[hero]**, `<hero-detail>` 은
 
-마지막줄의 ```<hero-detail>``` 는 **HeroDetailComponent**에서 만든 커스텀엘리먼트입니다.
+[Angular의 템플릿 문법](https://angular.io/docs/ts/latest/guide/template-syntax.html)
+을 사용합니다.
+
+마지막줄의 `<hero-detail>` 는 **HeroDetailComponent**에서 만든 커스텀엘리먼트입니다.
 
 **HeroDetailComponent**는 **HeroListComponent**와는 약간 다른 컴포넌트 입니다. **HeroDetailComponent**(코드상엔 안보이지만)는 유저가 선택한 히어로를 **HeroListComponent**에 표시해줍니다. **HeroDetailComponent**는 **HeroListComponent**의 자식 컴포넌트입니다.
 
-```<hero-detail>```이 기존의 HTML사이에 얼마나 잘 녹아들어가 있는지 보세요. 커스텀 컴포넌트는 기존의 컴포넌트들과 같은 레이아웃으로 위화감 없이 공존합니다. 
+`<hero-detail>`이 기존의 HTML사이에 얼마나 잘 녹아들어가 있는지 보세요. 커스텀 컴포넌트는 기존의 컴포넌트들과 같은 레이아웃으로 위화감 없이 공존합니다.
 
 ![component-tree](../images/2017-03-12-angular.io-architecture/component-tree.png)
 
@@ -227,14 +227,15 @@ typescript에서 데코레이터를 통해서 메타데이터를 추가할 수 �
 // src/app/hero-list.component.ts (metadata)
 @Component({
   moduleId: module.id,
-  selector:    'hero-list',
-  templateUrl: './hero-list.component.html',
-  providers:  [ HeroService ]
+  selector: "hero-list",
+  templateUrl: "./hero-list.component.html",
+  providers: [HeroService],
 })
 export class HeroListComponent implements OnInit {
-/* . . . */
+  /* . . . */
 }
 ```
+
 **@Component** 데코레이터는 바로 아래있는 클래스를 컴포넌트로 인지합니다.
 
 **@Component** 데코레이터에는 Angular가 뷰를 만들고 표시하기 위해 필요한 정보를 담고있는 객체가 필요합니다.
@@ -242,8 +243,8 @@ export class HeroListComponent implements OnInit {
 아래는 **@Component**를 구성하는 몇가지 요소들입니다.
 
 - **moduleId** : 마치 **templateUrl**처럼 모듈을 기준의 기본 주소(module.id)를 설정합니다.
-- **selector** : Angular가 부모 HTML에서 ````<hero-list>```의 인스턴스를 만들고 삽입할 수 있도록 하는 CSS선택자입니다.
-예를 들어 HTML에서 ```<hero-list></hero-list>```를 삽입하면 Angular는 거기에 **HeroListComponent**를 만들어줍니다.
+- **selector** : Angular가 부모 HTML에서 `<hero-list>`의 인스턴스를 만들고 삽입할 수 있도록 하는 CSS선택자입니다.
+  예를 들어 HTML에서 `<hero-list></hero-list>`를 삽입하면 Angular는 거기에 **HeroListComponent**를 만들어줍니다.
 - **templateUrl** : 모듈을 기준으로한 HTML 템플릿의 상대주소입니다.
 - **providers** : 컴포넌트에 필요한 서비스들의 의존성을 주입하기 위한 배열 객체입니다. 예제에서 처럼 컴포넌트가 히어로 목록을 표시하기 위해 **HeroService**가 필요함을 Angular에게 알려주는 방법중 하나입니다.
 
@@ -278,15 +279,15 @@ Angular는 템플릿과 컴포넌트를 일치시키는 **데이터 바인딩**�
 <li (click)="selectHero(hero)"></li>
 ```
 
-- **{% raw %}{{hero.name}}{% endraw %}** <a href="https://angular.io/docs/ts/latest/guide/displaying-data.html#interpolation" target="_blank">interpolation</a>은 ```<li>```엘리먼트 속에 **hero.name** 프로퍼티값을 보여줍니다.
-- **[hero]** <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#property-binding" target="_blank">property binding</a>은 **selectedHero**의 값을 부모 컴포넌트인 **HeroListComponent**에서 자식 컴포넌트인 **HeroDetailComponent**의 **hero** 프로퍼티로 전달합니다.
-- **(click)** <a href="https://angular.io/docs/ts/latest/guide/user-input.html#click" target="_blank">event binding</a>은 히어로 이름을 클릭했을 때 컴포넌트의 **selectHero** 메소드를 호출합니다.
+- **`{% raw %}{{hero.name}}{% endraw %}`** [interpolation](https://angular.io/docs/ts/latest/guide/displaying-data.html#interpolation)은 `<li>`엘리먼트 속에 **hero.name** 프로퍼티값을 보여줍니다.
+- **[hero]** [property binding](https://angular.io/docs/ts/latest/guide/template-syntax.html#property-binding)은 **selectedHero**의 값을 부모 컴포넌트인 **HeroListComponent**에서 자식 컴포넌트인 **HeroDetailComponent**의 **hero** 프로퍼티로 전달합니다.
+- **(click)** [event binding](https://angular.io/docs/ts/latest/guide/user-input.html#click)은 히어로 이름을 클릭했을 때 컴포넌트의 **selectHero** 메소드를 호출합니다.
 
 **양방향 데이터바인딩**은 데이터바인딩의 네가지 방법중 네번째 형태입니다. **ngModel**디렉티브를 사용해서 하나의 표기법으로 프로퍼티를 결합하고 이벤트를 바인딩합니다. 아래 예제는 **HeroDetailComponent** 템플릿의 예제입니다.
 
 ```html
 <!-- src/app/hero-detail.component.html (ngModel) -->
-<input [(ngModel)]="hero.name">
+<input [(ngModel)]="hero.name" />
 ```
 
 **양방향 데이터바인딩**에서는 프로퍼티 바인딩과 마찬가지로 데이터 프로퍼티값이 컴포넌트에서 인풋박스로 흘러갑니다. 또한 유저의 값 변경은 반대로 컴포넌트로 흘러가서 최근의 값으로 프로퍼티를 리셋합니다.
@@ -323,16 +324,16 @@ Angular 템플릿은 유동적입니다. Angular는 디렉티브에 따라서 DO
 <hero-detail *ngIf="selectedHero"></hero-detail>
 ```
 
-- **\*ngFor**은 Angular에게 heros 리스트에서 hero를 하나씩 ```<li>```태그로 넣으라고 알려줍니다.
+- **\*ngFor**은 Angular에게 heros 리스트에서 hero를 하나씩 `<li>`태그로 넣으라고 알려줍니다.
 - **\*ngIf**는 **seletedHero**가 있을때만 **HeroDetail**컴포넌트를 포함시킵니다.
 
 **속성** 디렉티브는 존재하는 엘리먼트의 외형 혹은 행동을 변화시킵니다. 템플릿에서는 일반적인 HTML attribute의 이름처럼 보입니다.
 
-양방향 데이터 바인딩으로 구현된 **ngModel**은 속성 디렉티브의 예제입니다. **ngModel**은 프로퍼티를 변화시키고 변경이벤트에 대응해서 존재하는 엘리먼트(보통 ```<input>```태그)의 행동을 변화시킵니다.
+양방향 데이터 바인딩으로 구현된 **ngModel**은 속성 디렉티브의 예제입니다. **ngModel**은 프로퍼티를 변화시키고 변경이벤트에 대응해서 존재하는 엘리먼트(보통 `<input>`태그)의 행동을 변화시킵니다.
 
 ```html
 <!--src/app/hero-detail.component.html (ngModel)-->
-<input [(ngModel)]="hero.name">
+<input [(ngModel)]="hero.name" />
 ```
 
 Angular에는 레이아웃 구조를 바꾸거나(**ngSwitch**와 같은) DOM 엘리먼트, 컴포넌트를 수정하는(**ngStyle**,**ngClass**와 같은) 몇가지 디렉티브들을 가지고 있습니다.
@@ -364,9 +365,15 @@ Angular는 서비스에대해 구체적으로 정의하지 않습니다. 클래�
 ```javascript
 // src/app/logger.service.ts (class)
 export class Logger {
-  log(msg: any)   { console.log(msg); }
-  error(msg: any) { console.error(msg); }
-  warn(msg: any)  { console.warn(msg); }
+  log(msg: any) {
+    console.log(msg);
+  }
+  error(msg: any) {
+    console.error(msg);
+  }
+  warn(msg: any) {
+    console.warn(msg);
+  }
 }
 ```
 
@@ -393,7 +400,7 @@ export class HeroService {
 
 서비스는 어느곳에나 있습니다.
 
-컴포넌트는 서비스에 의존해야합니다. 컴포넌트는 서버에서 데이터를 가져오거나, 유저의 입력을 검증하거나, 콘솔에 직접  출력하는 등의 일을 하지 않습니다. 이런 작업들은 서비스에 위임합니다.
+컴포넌트는 서비스에 의존해야합니다. 컴포넌트는 서버에서 데이터를 가져오거나, 유저의 입력을 검증하거나, 콘솔에 직접 출력하는 등의 일을 하지 않습니다. 이런 작업들은 서비스에 위임합니다.
 
 컴포넌트의 역할은 유저에게 경험을 제공하는것 뿐입니다. 뷰(템플릿으로 렌더링 된)와 어플리케이션 로직(모델의 개념을 포함하기도 하는)을 중계하는 역할을 합니다.
 훌륭한 컴포넌트는 데이터바인딩을 위해 프로퍼티와 메소드를 드러냅니다. 기타 다른 것들은 서비스에 위임합니다.
@@ -408,7 +415,7 @@ Angular는 의존성주입을 통해서 어플리케이션 로직을 서비스�
 
 의존성 주입은 클래스의 새로운 인스턴스에 필요한 의존성을 공급해주는 방법입니다. 대부분은 서비스를 주입해줍니다. Angular는 컴포넌트에 필요한 서비스들의 의존성을 주입해 줍니다.
 
-Angular는 생성자 파라미터를 통해서 컴포넌트에 어떤 서비스가 필요한지를 알 수 있습니다. 예를들어 당신의 **HeroListComponent**에  **HeroService**가 필요할 때는 다음처럼 합니다.
+Angular는 생성자 파라미터를 통해서 컴포넌트에 어떤 서비스가 필요한지를 알 수 있습니다. 예를들어 당신의 **HeroListComponent**에 **HeroService**가 필요할 때는 다음처럼 합니다.
 
 ```javascript
 // src/app/hero-list.component.ts (constructor)
@@ -457,8 +464,8 @@ providers: [
 
 - 의존성 주입은 Angular 프레임워크와 연결되어있고 어디서나 사용합니다.
 - injector의 주요 메커니즘은
-  + injector는 생성된 서비스 인스턴스의 컨테이너를 관리합니다.
-  + injector는 provider로 부터 새로운 인스턴스를 생성할 수 있습니다.
+  - injector는 생성된 서비스 인스턴스의 컨테이너를 관리합니다.
+  - injector는 provider로 부터 새로운 인스턴스를 생성할 수 있습니다.
 - 서비스를 생성하는 방법은 provider를 사용하는겁니다.
 - injector에 provider를 등록합니다.
 

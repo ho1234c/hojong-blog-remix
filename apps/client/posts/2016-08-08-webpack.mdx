@@ -7,7 +7,7 @@ tags: ["technology"]
 
 ![1](https://avatars0.githubusercontent.com/webpack?&s=256)
 
-모듈 번들링에 대한 <a href="https://medium.freecodecamp.com/javascript-modules-part-2-module-bundling-5020383cf306#.w67ghql7u">Preethi Kasireddy의 글</a> 을 읽어보면 모듈번들러의 필요성에 대해 알수있다. 또한 React를 공부하려고 찾아보면 일반적으로 기반을 만들 때 모듈번들러를 사용한다. 유명한 모듈번들러는 Browerify와 Webpack이 있는데 지금은 Webpack쪽으로 기울고 있는 추세 인것 같다. 프로젝트의 크기가 커질 수록 모듈에 대한 중요성은 커지기 때문에 익혀놓으면 도움이 될 것 같다.
+모듈 번들링에 대한 [Preethi Kasireddy의 글](https://medium.freecodecamp.com/javascript-modules-part-2-module-bundling-5020383cf306#.w67ghql7u) 을 읽어보면 모듈번들러의 필요성에 대해 알수있다. 또한 React를 공부하려고 찾아보면 일반적으로 기반을 만들 때 모듈번들러를 사용한다. 유명한 모듈번들러는 Browerify와 Webpack이 있는데 지금은 Webpack쪽으로 기울고 있는 추세 인것 같다. 프로젝트의 크기가 커질 수록 모듈에 대한 중요성은 커지기 때문에 익혀놓으면 도움이 될 것 같다.
 
 아쉽게도 공식 도큐먼트의 설명이 친절하지 않다. 다른 분들이 webpack에 대해 정리 및 비교해 놓은 글들이 도움이 많이 된다.
 
@@ -52,7 +52,7 @@ module.exports = {
     path: __dirname,
     filename: "bundle.js",
   },
-}
+};
 ```
 
 이 경우엔 module 폴더 속에 필요한 js파일들이 있다.
@@ -89,7 +89,7 @@ module.exports = {
       },
     ],
   },
-}
+};
 ```
 
 - test : 정규식을 통해 로더가 필요한 파일의 패턴을 설정
@@ -124,7 +124,7 @@ module.exports = {
       },
     ],
   },
-}
+};
 ```
 
 ## Global setting
@@ -168,12 +168,14 @@ module.exports = {
 ## devtool
 
 모듈이 번들링되면 가독성이 떨어지고 디버깅이 힘들다. 특히 React와 같은 라이브러리를 babel로 트랜스파일한 경우라면 더욱 그렇다. 하지만 devtool을 설정해 주면 보다 디버깅을 쉽게 할 수 있다. 보통 eval, source-map, inline-source-map가 주로 사용된다.
-<a href="https://webpack.github.io/docs/configuration.html#devtool" target='_blank'>devtool 옵션</a><br>
-<a href="http://blog.teamtreehouse.com/introduction-source-maps" target='_blank'>source map에 대해서</a>
+
+[devtool 옵션](https://webpack.github.io/docs/configuration.html#devtool)<br/>
+
+[source map에 대해서](http://blog.teamtreehouse.com/introduction-source-maps)
 
 ```js
 {
-  devtool: "eval"
+  devtool: "eval";
 }
 ```
 
@@ -206,9 +208,13 @@ webpack-dev-server --inline --hot
 ## 마치며
 
 소개한 기능은 빙산의 일각일 만큼 webpack은 매우 유연하다. npm script와 함께 task runner로 많이 사용되지만 gulp, grunt와의 연동을 위한 플러그인도 있다. 좀더 사용하는데 익숙해 지면 훨씬 편하게 프로젝트를 관리 할 수 있을 것 같다.
-<br>
 
-<a href="https://github.com/AriaFallah/WebpackTutorial/tree/master/part1" target="_blank">https://github.com/AriaFallah/WebpackTutorial/tree/master/part1</a>
-<a href="http://d2.naver.com/helloworld/0239818" target="_blank">http://d2.naver.com/helloworld/0239818</a>
-<a href="http://hyunseob.github.io/2016/04/03/webpack-practical-guide/" target="_blank">http://hyunseob.github.io/2016/04/03/webpack-practical-guide/</a>
-<a href="http://survivejs.com/webpack/developing-with-webpack/automatic-browser-refresh/" target="_blank">http://survivejs.com/webpack/developing-with-webpack/automatic-browser-refresh/</a>
+<br />
+
+[https://github.com/AriaFallah/WebpackTutorial/tree/master/part1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1)
+
+[http://d2.naver.com/helloworld/0239818](http://d2.naver.com/helloworld/0239818)
+
+[http://hyunseob.github.io/2016/04/03/webpack-practical-guide/](http://hyunseob.github.io/2016/04/03/webpack-practical-guide/)
+
+[http://survivejs.com/webpack/developing-with-webpack/automatic-browser-refresh/](http://survivejs.com/webpack/developing-with-webpack/automatic-browser-refresh/)

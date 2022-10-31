@@ -7,9 +7,7 @@ tags: ["technology", "translation"]
 
 JavaScript Modules Part2 A Beginner’s Guide
 
-<!--more-->
-
-**FreeCodeCamp에 기재된 <a href="https://medium.freecodecamp.com/javascript-modules-part-2-module-bundling-5020383cf306#.kthd3yfad" target="_blank"> Preethi Kasireddy의 포스트</a>를 번역한 글입니다. 이해한대로 의역했기 때문에 오역 및 빠뜨리는 부분이 있을 수 있습니다.**
+**FreeCodeCamp에 기재된 [Preethi Kasireddy의 포스트](https://medium.freecodecamp.com/javascript-modules-part-2-module-bundling-5020383cf306#.kthd3yfad)를 번역한 글입니다. 이해한대로 의역했기 때문에 오역 및 빠뜨리는 부분이 있을 수 있습니다.**
 
 이 포스트의 Part1에서는 모듈이 뭔지, 왜 사용해야 하는지, 어떻게 만드는지에 대해 이야기 했습니다. 두번째 파트에서는 "bundle" 모듈의 의미, 왜 사용해야 하는가, 다른방법과의 차이, 웹개발에서 모듈의 미래에 대해 다룰겁니다.
 
@@ -59,7 +57,7 @@ var myAverageGrade = myDependency.average(myGrades);
 browserify main.js -o bundle.js
 ```
 
-Browserify는 해당 프로젝트의 의존성을 파악하기 위해서 파싱된 <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank">AST</a>를 돌아다닙니다.
+Browserify는 해당 프로젝트의 의존성을 파악하기 위해서 파싱된 [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)를 돌아다닙니다.
 의존성의 구조를 파악하고 나면 올바른 순서의 하나의 파일로 번들해줍니다. 중요한 사실은 모든 소스코드들이 하나의 script태그, 즉 한번의 HTTP request만으로
 다운로드 된다는 겁니다.
 
@@ -76,7 +74,7 @@ RequireJS나 r.js같은 도구를 이용해서 AMD 모듈을 번들하고 minify
 
 전체적으로, 번들링에 있어서 AMD와 CommonJS의 차이는 AMD는 단계를 구축(build step)하는데서 자유롭다는 것입니다. 적어도 코드를 실시간으로 push하기 전에는 r.js과 같은 point optimizers가 코드를 핸들링 할 수 있습니다.
 
-CommonsJS vs AMD에 관심이 있다면 <a href="http://tomdale.net/2012/01/amd-is-not-the-answer/" target="_blank">Tom Dale's blog</a>를 읽어보세요:)
+CommonsJS vs AMD에 관심이 있다면 [Tom Dale's blog](http://tomdale.net/2012/01/amd-is-not-the-answer/)를 읽어보세요:)
 
 ### Webpack
 
@@ -84,9 +82,11 @@ CommonsJS vs AMD에 관심이 있다면 <a href="http://tomdale.net/2012/01/amd-
 
 code splitting은 webpack이 지원하는 강력한 기능중 하나일 뿐이고 웹상에는 webpack와 browserify를 두고 의견들이 많습니다. 아래 링크는 제가 이 이슈에 대해 논의하는걸 찾은 곳입니다.
 
-<a href="https://gist.github.com/substack/68f8d502be42d5cd4942" target="_blank">https://gist.github.com/substack/68f8d502be42d5cd4942</a>
-<a href="http://mattdesl.svbtle.com/browserify-vs-webpack" target="_blank">http://mattdesl.svbtle.com/browserify-vs-webpack</a>
-<a href="http://blog.namangoel.com/browserify-vs-webpack-js-drama" target="_blank">http://blog.namangoel.com/browserify-vs-webpack-js-drama</a>
+[https://gist.github.com/substack/68f8d502be42d5cd4942](https://gist.github.com/substack/68f8d502be42d5cd4942)
+
+[http://mattdesl.svbtle.com/browserify-vs-webpack](http://mattdesl.svbtle.com/browserify-vs-webpack)
+
+[http://blog.namangoel.com/browserify-vs-webpack-js-drama](http://blog.namangoel.com/browserify-vs-webpack-js-drama)
 
 ### ES6 모듈
 
@@ -95,7 +95,7 @@ code splitting은 webpack이 지원하는 강력한 기능중 하나일 뿐이�
 
 한가지 드는 의문은, UglifyJS 같은 툴로 코드를 minify하는 것과 죽은 코드를 지우는것(dead code elimination)이 무엇이 다른가? 입니다. 답은 의존적입니다. (NOTE: 죽은 코드를 지운다(dead code elimination)는 것은 사용하지 않는 변수와 코드를 지우는 겁니다. 번들링된후의 프로그램이 사용하지 않는 것을 지우는것으로 생각하면 됩니다.)
 
-죽은 코드를 지우는것(dead code elimination)이 가끔은 UglifyJS와 ES6사이에서 정확히 같은 일을 수행 할수도 있고 아닐 수 도 있습니다. <a href="https://github.com/rollup/rollup" target="_blank">Rollup’s wiki</a>를 보시면 됩니다.
+죽은 코드를 지우는것(dead code elimination)이 가끔은 UglifyJS와 ES6사이에서 정확히 같은 일을 수행 할수도 있고 아닐 수 도 있습니다.[Rollup’s wiki](https://github.com/rollup/rollup)를 보시면 됩니다.
 
 ES6 모듈의 차이를 만드는 것은 죽은 코드 제거(dead code elimination)에 tree shaking이라는 다른 접근법을 사용하기 때문입니다. tree shaking은 죽은 코드 제거(dead code elimination)에 반대입니다. 번들이 필요하지 않은 코드를 제거하는 것이아니라, 번들이 필요한 프로그램만 포함시킵니다. 예제를 보세요:
 
@@ -105,46 +105,46 @@ ES6 모듈의 차이를 만드는 것은 죽은 코드 제거(dead code eliminat
 export function each(collection, iterator) {
   if (Array.isArray(collection)) {
     for (var i = 0; i < collection.length; i++) {
-      iterator(collection[i], i, collection)
+      iterator(collection[i], i, collection);
     }
   } else {
     for (var key in collection) {
-      iterator(collection[key], key, collection)
+      iterator(collection[key], key, collection);
     }
   }
 }
 
 export function filter(collection, test) {
-  var filtered = []
+  var filtered = [];
   each(collection, function (item) {
     if (test(item)) {
-      filtered.push(item)
+      filtered.push(item);
     }
-  })
-  return filtered
+  });
+  return filtered;
 }
 
 export function map(collection, iterator) {
-  var mapped = []
+  var mapped = [];
   each(collection, function (value, key, collection) {
-    mapped.push(iterator(value))
-  })
-  return mapped
+    mapped.push(iterator(value));
+  });
+  return mapped;
 }
 
 export function reduce(collection, iterator, accumulator) {
-  var startingValueMissing = accumulator === undefined
+  var startingValueMissing = accumulator === undefined;
 
   each(collection, function (item) {
     if (startingValueMissing) {
-      accumulator = item
-      startingValueMissing = false
+      accumulator = item;
+      startingValueMissing = false;
     } else {
-      accumulator = iterator(accumulator, item)
+      accumulator = iterator(accumulator, item);
     }
-  })
+  });
 
-  return accumulator
+  return accumulator;
 }
 ```
 
@@ -168,18 +168,18 @@ Utils.each([1, 2, 3], function(x) { console.log(x) });
 function each(collection, iterator) {
   if (Array.isArray(collection)) {
     for (var i = 0; i < collection.length; i++) {
-      iterator(collection[i], i, collection)
+      iterator(collection[i], i, collection);
     }
   } else {
     for (var key in collection) {
-      iterator(collection[key], key, collection)
+      iterator(collection[key], key, collection);
     }
   }
 }
 
 each([1, 2, 3], function (x) {
-  console.log(x)
-})
+  console.log(x);
+});
 ```
 
 우리가 사용한 each만 exports했다는 것을 주의깊게 봐야합니다.
@@ -198,33 +198,33 @@ tree shaken버전에서는 이렇게 보여질 겁니다.
 function each(collection, iterator) {
   if (Array.isArray(collection)) {
     for (var i = 0; i < collection.length; i++) {
-      iterator(collection[i], i, collection)
+      iterator(collection[i], i, collection);
     }
   } else {
     for (var key in collection) {
-      iterator(collection[key], key, collection)
+      iterator(collection[key], key, collection);
     }
   }
 }
 
 function filter(collection, test) {
-  var filtered = []
+  var filtered = [];
   each(collection, function (item) {
     if (test(item)) {
-      filtered.push(item)
+      filtered.push(item);
     }
-  })
-  return filtered
+  });
+  return filtered;
 }
 
 filter([1, 2, 3], function (x) {
-  return x === 2
-})
+  return x === 2;
+});
 ```
 
 each와 filter가 둘다 포함되었다는 것을 주의깊에 봐야합니다. filter가 each를 사용해서 구현되어있기 때문에 두가지 모듈을 export해야 합니다.
 
-tree shaking을 좀더 잘 알기 위해서는 <a href="http://rollupjs.org/" target="_blank">http://rollupjs.org/</a>를 참고해 보세요.
+tree shaking을 좀더 잘 알기 위해서는 [http://rollupjs.org/](http://rollupjs.org/)를 참고해 보세요.
 
 ### ES6 모듈 빌딩
 
@@ -234,8 +234,14 @@ tree shaking을 좀더 잘 알기 위해서는 <a href="http://rollupjs.org/" ta
 
 1. 트랜스파일러(Babel 이나 Traceur)를 사용해서 ES6코드를 ES5코드로 변환해서 CommonJS, AMD, UMD중 하나를 사용합니다.
    그리고 Browerify나 Webpack같은 모듈번들러를 통해서 하나이상의 번들파일을 만들어줍니다.
-2. <a href="http://rollupjs.org/" target="_blank">Rollup.js</a>를 사용하는것은 번들링전에 ES6코드와 의존성을 정적으로 분석하는것 외에는 첫번째 방법과 유사합니다. 이는 번들에 포함되는 것을 최소화하기 위해 tree shaking을 사용 합니다. 결국 Rollup.js를 사용하는것의 가장 큰 장점은 tree shaking을 통해서 번들을 최소화 해주는겁니다.
-   주의해야 할 점은 Rollup은 코드를 번들하기 위한 ES6, CommonJS, AMD, UMD, IIFE같은 형식을 지원한다는 것입니다. 만약 AMD, CommonJS, ES6를 번들하기로 정했는데 IIFE, UMD가 그대로 브라우저에서 작동한다면 브라우저가 이해할 수 있는 방법으로 바꾸는 다른 메소드를 찾아야 합니다.(Browserify, Webpack, RequireJS 등등)
+2. [Rollup.js](http://rollupjs.org/)
+   을 사용하는것은 번들링전에 ES6코드와 의존성을 정적으로 분석하는것 외에는 첫번째
+   방법과 유사합니다. 이는 번들에 포함되는 것을 최소화하기 위해 tree shaking을 사용
+   합니다. 결국 Rollup.js를 사용하는것의 가장 큰 장점은 tree shaking을 통해서 번들을
+   최소화 해주는겁니다. 주의해야 할 점은 Rollup은 코드를 번들하기 위한 ES6, CommonJS,
+   AMD, UMD, IIFE같은 형식을 지원한다는 것입니다. 만약 AMD, CommonJS, ES6를 번들하기로
+   정했는데 IIFE, UMD가 그대로 브라우저에서 작동한다면 브라우저가 이해할 수 있는
+   방법으로 바꾸는 다른 메소드를 찾아야 합니다.(Browserify, Webpack, RequireJS 등등)
 
 ### Jumping through hoops
 
@@ -245,22 +251,22 @@ tree shaking을 좀더 잘 알기 위해서는 <a href="http://rollupjs.org/" ta
 
 고맙게도 답은 "조만간"입니다.
 
-ECMAScript는 현재 <a href="https://github.com/ModuleLoader/es6-module-loader/" target="_blank">ECMAScript6 module loader API</a> 라고하는 해답을 위한 설명서를 가지고 있습니다. 간단히 말해서 프로그램입니다. Promise-based API는 동적으로 모듈을 로드하고 이후에 새로운 모듈을 다시 불러오지 않기 위해 그걸 캐싱해놓습니다.
+ECMAScript는 현재 [ECMAScript6 module loader API](https://github.com/ModuleLoader/es6-module-loader/) 라고하는 해답을 위한 설명서를 가지고 있습니다. 간단히 말해서 프로그램입니다. Promise-based API는 동적으로 모듈을 로드하고 이후에 새로운 모듈을 다시 불러오지 않기 위해 그걸 캐싱해놓습니다.
 
 이렇게 생겼습니다.
 
 ```js
 export class myModule {
   constructor() {
-    console.log("Hello, I am a module")
+    console.log("Hello, I am a module");
   }
 
   hello() {
-    console.log("hello!")
+    console.log("hello!");
   }
 
   goodbye() {
-    console.log("goodbye!")
+    console.log("goodbye!");
   }
 }
 ```
@@ -282,16 +288,16 @@ script태그 속에 "type=module"을 정의해 줄 수 있습니다.
 </script>
 ```
 
-아직 <a href="https://github.com/ModuleLoader/es6-module-loader/" target="_blank">module loader API Polyfill의 repo</a>를 꼭 읽어보시기를 권장합니다.
+아직 [module loader API Polyfill의 repo](https://github.com/ModuleLoader/es6-module-loader/)를 꼭 읽어보시기를 권장합니다.
 
-추가적으로 테스트해보고 싶으시다면 ES6 Module Loader polyfill의 상단에 있는 <a href="https://github.com/systemjs/systemjs" target="_blank">System.js</a>를 check out하세요.
+추가적으로 테스트해보고 싶으시다면 ES6 Module Loader polyfill의 상단에 있는 [System.js](https://github.com/systemjs/systemjs)를 check out하세요.
 System.js는 브라우저와 Node에서 다양한 형식의 모듈(ES6 modules, AMD, CommonJS, global scripts)을 동적으로 로드해줍니다. 그리고 이전에 로드된 모듈을 다시 로드하지 않기 위해 module registry가 로드된 모듈을 관리합니다. 어떤 모듈형식이라도 로드해주고 ES6 모듈을 트랜스파일 해주는 것은 말할 필요도 없습니다!
 
 ### ES6에 모듈기능이 있는데도 번들러가 필요한가?
 
 ES6의 인기가 증가하면서 다음과 같은 몇가지 흥미로운 결과를 가져왔습니다.
 
-**HTTP/2가 모듈번들러를 필요 없게 만들것인가?**<br>
+**HTTP/2가 모듈번들러를 필요 없게 만들것인가?**<br/>
 HTTP/1에서는 TCP 커넥션 하나에 하나의 request만이 가능했습니다. 이것은 여러 리소스를 위해서 여러 request가 필요한 이유입니다. HTTP/2에서는 모든것이 바뀌엇습니다. HTTP/2는 완벽히 다중화 되어있습니다. 이건 여러 request와 response가 병행될수 있다는 뜻입니다. 결과적으로 우리는 하나의 커넥션에서 동시에 여러가지 request를 처리할수 있습니다.
 
 HTTP request의 코스트가 현저히 낮아지면서 모듈을 로딩하는것은 장기적으로 큰 퍼포먼스 이슈가 되지 않습니다. 몇몇은 더이상 모듈 번들링이 의미가 없다고 이야기합니다. 이건 확실히 가능하지만 상황에 따라 다릅니다.
@@ -300,9 +306,9 @@ HTTP request의 코스트가 현저히 낮아지면서 모듈을 로딩하는것
 
 대부분의 웹사이트가 HTTP/2를 지원하려면 멀었습니다. 저는 이 build process가 가까운 시일 동안은 계속 있을거라고 생각합니다.
 
-PS. HTTP/2의 다른 차이가 궁금하다면 <a href="https://http2.github.io/faq/#what-are-the-key-differences-to-http1x" target="_blank">이곳</a>을 읽어보세요.
+PS. HTTP/2의 다른 차이가 궁금하다면 [이곳](https://http2.github.io/faq/#what-are-the-key-differences-to-http1x)을 읽어보세요.
 
-**CommonJS, AMD, UMD가 필요없게 될것인가?**<br>
+**CommonJS, AMD, UMD가 필요없게 될것인가?**<br/>
 모듈이 기본 내장으로 ES6에 들어가 있으니, 다른 non-native한 모듈형식은 모두 필요없게 될까요?
 
 글쎄요. 모듈을 import 하고 export하는 메소드의 표준화는 웹개발에 있어서 큰 수혜입니다. 과연 ES6모듈이 표준화 되는 시점에 도달하려면 얼마나 걸릴까요?

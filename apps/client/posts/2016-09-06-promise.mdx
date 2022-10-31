@@ -46,33 +46,32 @@ myFunction1(...args, function(){
 Promise객체는 익명함수를 인자로 받아서 생성된다. 약속이 잘 지켜졌다면 resolve를, 그렇지 않다면 reject를 호출 한다.
 
 ```js
-myPromise = function(isValid){
-    return new Promise(function(resolve, reject){
-        if(isValid){
-            resolve('success');
-        } else{
-            reject(Error('fail'))
-        }
-    })
-}
+myPromise = function (isValid) {
+  return new Promise(function (resolve, reject) {
+    if (isValid) {
+      resolve("success");
+    } else {
+      reject(Error("fail"));
+    }
+  });
+};
 ```
 
 Promise 객체를 생성하면 우리가 한 약속은 대기중(pending)상태이고 후에 어떤 요인에 의해 이행되거나(fulfilled) 거부될것이다.(rejected)
 
 아래처럼 new 키워드를 통해서도 생성할 수 있다.
 
-
 ```js
-var myPromise = new Promise(function(resolve, reject){
-    // 랜덤하게 성공
-    var isValid = Math.round(Math.random());
+var myPromise = new Promise(function (resolve, reject) {
+  // 랜덤하게 성공
+  var isValid = Math.round(Math.random());
 
-    if(isValid){
-        resolve('success');
-    } else{
-        reject(Error('fail'));
-    }
-})
+  if (isValid) {
+    resolve("success");
+  } else {
+    reject(Error("fail"));
+  }
+});
 ```
 
 이 경우엔 Promise객체를 생성하자마자 인자로 받은 익명함수를 실행할것이다. 또한 한번 할당된 myPromise는 유지되기 때문에 처음에 성공했다면 후의 호출에서도 계속 성공, 처음에 실패했다면 후의 호출에서도 계속 실패할 것이다.
@@ -86,11 +85,15 @@ myPromise(true | false).then(funcToResolve, funcToReject);
 ```
 
 ```js
-myPromise(true | false).then(funcToResolve).catch(funcToReject);
+myPromise(true | false)
+  .then(funcToResolve)
+  .catch(funcToReject);
 ```
 
 ```js
-myPromise(true | false).then(funcToResolve).then(undefined, funcToReject);
+myPromise(true | false)
+  .then(funcToResolve)
+  .then(undefined, funcToReject);
 ```
 
 위의 세가지 예제에서는 모두 myPromise가 이행된다면 funcToResolve가 호출 될것이고 거부되었다면 funcToReject가 호출될것이다. 그런데 첫번째 예제와 두번째 예제에는 한가지 차이가 있는데 첫번째 예제의 경우 funcToResolve에서 발생하는 에러를 핸들링할 수 없다는점이다.
@@ -106,28 +109,40 @@ myPromise(true | false).then(funcToResolve).then(undefined, funcToReject);
 Promise.all은 Promise객체의 배열을 파라미터로 받아서 하나라도 거부된 경우 거부를 반환한다.
 
 ```js
-var myPromise1 = new Promise(function(resolve, reject){
-    window.setTimeout(function(){
-        resolve('myPromise1 result');
-    }, 1000)
-})
+var myPromise1 = new Promise(function (resolve, reject) {
+  window.setTimeout(function () {
+    resolve("myPromise1 result");
+  }, 1000);
+});
 
-var myPromise2 = new Promise(function(resolve, reject){
-    window.setTimeout(function(){
-        resolve('myPromise2 result');
-    }, 3000)
-})
+var myPromise2 = new Promise(function (resolve, reject) {
+  window.setTimeout(function () {
+    resolve("myPromise2 result");
+  }, 3000);
+});
 
-Promise.all([myPromise1, myPromise2]).then(function(result){
-    console.log(result);
-})
+Promise.all([myPromise1, myPromise2]).then(function (result) {
+  console.log(result);
+});
 
 // 3000ms 후에 ["myPromise1 result", "myPromise2 result"] 가 출력된다.
-
 ```
 
-<br>
+<br />
 아래 링크에서 더 자세한 내용을 볼수 있다.
-<a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank">https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise</a>
-<a href="http://www.html5rocks.com/ko/tutorials/es6/promises/" target="_blank">http://www.html5rocks.com/ko/tutorials/es6/promises/</a>
-<a href="http://yubylab.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Promise-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0" target="_blank">http://yubylab.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Promise-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0</a><br>
+<a
+  href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise"
+  target="_blank"
+>
+  https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise
+</a>
+<a href="http://www.html5rocks.com/ko/tutorials/es6/promises/" target="_blank">
+  http://www.html5rocks.com/ko/tutorials/es6/promises/
+</a>
+<a
+  href="http://yubylab.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Promise-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0"
+  target="_blank"
+>
+  http://yubylab.tistory.com/entry/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-Promise-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0
+</a>
+<br />

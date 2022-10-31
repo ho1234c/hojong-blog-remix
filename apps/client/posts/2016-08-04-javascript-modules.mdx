@@ -7,9 +7,7 @@ tags: ["technology", "translation"]
 
 JavaScript Modules Part1 A Beginner’s Guide
 
-<!--more-->
-
-**FreeCodeCamp에 기재된 <a href="https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.wou8etvsd" target="_blank"> Preethi Kasireddy의 포스트</a>를 번역한 글입니다. 이해한대로 의역했기 때문에 오역 및 빠뜨리는 부분이 있을 수 있습니다.**
+**FreeCodeCamp에 기재된 [Preethi Kasireddy의 포스트](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.wou8etvsd)를 번역한 글입니다. 이해한대로 의역했기 때문에 오역 및 빠뜨리는 부분이 있을 수 있습니다.**
 
 자바스크립트 초심자라면 “module bundlers vs. module loaders”, “Webpack vs. Browserify” and “AMD vs. CommonJS”과 같은 용어들에 압도당할 수 있습니다. 어쩌면 자바스크립트 모듈시스템에 겁먹었을 수도 있지만 모듈 시스템은 웹개발자에게 필수적입니다.
 
@@ -35,7 +33,7 @@ _note: 포스트는 두가지 섹션으로 나뉩니다. Part 1은 모듈은 무
 **2) 네임스페이싱(Namespacing)**
 자바스크립트에서 최상위 스코프 함수는 글로벌입니다.(모두가 접근 할 수 있음) 이 때문에 완벽하게 연관되지 않는 코드끼리도 전역변수를 공유하고 "네임스페이스 오염"이 생깁니다.
 
-관련 없는 코드간의 전역변수 공유는 매우 좋지 않습니다. <a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad" target="_blank">big no-no!!</a>
+관련 없는 코드간의 전역변수 공유는 매우 좋지 않습니다. [big no-no!!](http://c2.com/cgi/wiki?GlobalVariablesAreBad)
 
 이 포스트의 후반에선 모듈을 사용하는 것이 private space를 생성해서 네임스페이스 오염을 피할수 있다는 것을 보여줍니다.
 
@@ -57,29 +55,29 @@ Java나 Python같은 언어에서 클래스의 사용법과 비슷합니다. pri
 **예제 1: 익명 클로저(Anonymous closure)**
 
 ```js
-;(function () {
+(function () {
   // 클로저 스코프안에 변수를 넣음으로써 private를 유지할 수 있습니다.
 
-  var myGrades = [93, 95, 88, 0, 55, 91]
+  var myGrades = [93, 95, 88, 0, 55, 91];
 
   var average = function () {
     var total = myGrades.reduce(function (accumulator, item) {
-      return accumulator + item
-    }, 0)
+      return accumulator + item;
+    }, 0);
 
-    return "Your average grade is " + total / myGrades.length + "."
-  }
+    return "Your average grade is " + total / myGrades.length + ".";
+  };
 
   var failing = function () {
     var failingGrades = myGrades.filter(function (item) {
-      return item < 70
-    })
+      return item < 70;
+    });
 
-    return "You failed " + failingGrades.length + " times."
-  }
+    return "You failed " + failingGrades.length + " times.";
+  };
 
-  console.log(failing())
-})()
+  console.log(failing());
+})();
 
 // ‘You failed 2 times.’
 ```
@@ -87,32 +85,32 @@ Java나 Python같은 언어에서 클래스의 사용법과 비슷합니다. pri
 이 구조에서 익명함수는 자신의 영역 또는 "클로저"를 가지고 있습니다. 이건 부모 네임스페이스(전역)로부터 변수를 숨겨줍니다. 이 접근이 훌륭한것은 이 함수 속의 지역변수는 우연히 전역변수에 덮여씌여지는것 없이 전역변수에 접근할 수 있습니다. 다음처럼요:
 
 ```js
-var global = "Hello, I am a global variable :)"
+var global = "Hello, I am a global variable :)";
 
-;(function () {
+(function () {
   // 클로저 스코프안에 변수를 넣음으로써 private를 유지할 수 있습니다.
 
-  var myGrades = [93, 95, 88, 0, 55, 91]
+  var myGrades = [93, 95, 88, 0, 55, 91];
 
   var average = function () {
     var total = myGrades.reduce(function (accumulator, item) {
-      return accumulator + item
-    }, 0)
+      return accumulator + item;
+    }, 0);
 
-    return "Your average grade is " + total / myGrades.length + "."
-  }
+    return "Your average grade is " + total / myGrades.length + ".";
+  };
 
   var failing = function () {
     var failingGrades = myGrades.filter(function (item) {
-      return item < 70
-    })
+      return item < 70;
+    });
 
-    return "You failed " + failingGrades.length + " times."
-  }
+    return "You failed " + failingGrades.length + " times.";
+  };
 
-  console.log(failing())
-  console.log(global)
-})()
+  console.log(failing());
+  console.log(global);
+})();
 
 // 'You failed 2 times.'
 // 'Hello, I am a global variable :)'
@@ -123,59 +121,59 @@ var global = "Hello, I am a global variable :)"
 또 다른 방법은 jQuery처럼 Global import를 하는 겁니다. 이건 매개변수로 전역변수를 전달하는 것을 제외하면 방금전의 익명 클로저와 유사합니다.
 
 ```js
-;(function (globalVariable) {
+(function (globalVariable) {
   // 클로저 스코프안에 변수를 넣음으로써 private를 유지할 수 있습니다.
   var privateFunction = function () {
-    console.log("Shhhh, this is private!")
-  }
+    console.log("Shhhh, this is private!");
+  };
 
   // function() 블럭 속에 감춰진 메소드들 속에서 globalVariable의 인터페이스를 통해 아래 메소드들을 드러냄
 
   globalVariable.each = function (collection, iterator) {
     if (Array.isArray(collection)) {
       for (var i = 0; i < collection.length; i++) {
-        iterator(collection[i], i, collection)
+        iterator(collection[i], i, collection);
       }
     } else {
       for (var key in collection) {
-        iterator(collection[key], key, collection)
+        iterator(collection[key], key, collection);
       }
     }
-  }
+  };
 
   globalVariable.filter = function (collection, test) {
-    var filtered = []
+    var filtered = [];
     globalVariable.each(collection, function (item) {
       if (test(item)) {
-        filtered.push(item)
+        filtered.push(item);
       }
-    })
-    return filtered
-  }
+    });
+    return filtered;
+  };
 
   globalVariable.map = function (collection, iterator) {
-    var mapped = []
+    var mapped = [];
     globalUtils.each(collection, function (value, key, collection) {
-      mapped.push(iterator(value))
-    })
-    return mapped
-  }
+      mapped.push(iterator(value));
+    });
+    return mapped;
+  };
 
   globalVariable.reduce = function (collection, iterator, accumulator) {
-    var startingValueMissing = accumulator === undefined
+    var startingValueMissing = accumulator === undefined;
 
     globalVariable.each(collection, function (item) {
       if (startingValueMissing) {
-        accumulator = item
-        startingValueMissing = false
+        accumulator = item;
+        startingValueMissing = false;
       } else {
-        accumulator = iterator(accumulator, item)
+        accumulator = iterator(accumulator, item);
       }
-    })
+    });
 
-    return accumulator
-  }
-})(globalVariable)
+    return accumulator;
+  };
+})(globalVariable);
 ```
 
 이 예제에서 globalVariable은 유일한 전역변수 입니다.
@@ -187,28 +185,28 @@ var global = "Hello, I am a global variable :)"
 ```js
 var myGradesCalculate = (function () {
   // 클로저 스코프안에 변수를 넣음으로써 private를 유지할 수 있습니다.
-  var myGrades = [93, 95, 88, 0, 55, 91]
+  var myGrades = [93, 95, 88, 0, 55, 91];
 
   // function() 블럭 속에 구현 된 메소드들 속에서 인터페이스를 통해 메소드들을 드러냄
 
   return {
     average: function () {
       var total = myGrades.reduce(function (accumulator, item) {
-        return accumulator + item
-      }, 0)
+        return accumulator + item;
+      }, 0);
 
-      return "Your average grade is " + total / myGrades.length + "."
+      return "Your average grade is " + total / myGrades.length + ".";
     },
 
     failing: function () {
       var failingGrades = myGrades.filter(function (item) {
-        return item < 70
-      })
+        return item < 70;
+      });
 
-      return "You failed " + failingGrades.length + " times."
+      return "You failed " + failingGrades.length + " times.";
     },
-  }
-})()
+  };
+})();
 ```
 
 보시다시피 이 방법은 어떤 변수 혹은 메소드가 private 일지 결정 할 수 있게 하고 우리가 드러내길 원하는 변수나
@@ -220,23 +218,23 @@ var myGradesCalculate = (function () {
 ```js
 var myGradesCalculate = (function () {
   // 클로저 스코프안에 변수를 넣음으로써 private를 유지할 수 있습니다.
-  var myGrades = [93, 95, 88, 0, 55, 91]
+  var myGrades = [93, 95, 88, 0, 55, 91];
 
   var average = function () {
     var total = myGrades.reduce(function (accumulator, item) {
-      return accumulator + item
-    }, 0)
+      return accumulator + item;
+    }, 0);
 
-    return "Your average grade is " + total / myGrades.length + "."
-  }
+    return "Your average grade is " + total / myGrades.length + ".";
+  };
 
   var failing = function () {
     var failingGrades = myGrades.filter(function (item) {
-      return item < 70
-    })
+      return item < 70;
+    });
 
-    return "You failed " + failingGrades.length + " times."
-  }
+    return "You failed " + failingGrades.length + " times.";
+  };
 
   // Explicitly reveal public pointers to the private functions
   // that we want to reveal publicly
@@ -244,18 +242,20 @@ var myGradesCalculate = (function () {
   return {
     average: average,
     failing: failing,
-  }
-})()
+  };
+})();
 
-myGradesCalculate.failing() // 'You failed 2 times.'
-myGradesCalculate.average() // 'Your average grade is 70.33333333333333.'
+myGradesCalculate.failing(); // 'You failed 2 times.'
+myGradesCalculate.average(); // 'Your average grade is 70.33333333333333.'
 ```
 
 지금까지 많은걸 이해한것 처럼 보일 수 있습니다. 하지만 이건 모듈패턴의 빙산의 일각 입니다. 이건 제가 찾은 유용한 예제들 입니다.
 
-<a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript" target="_blank">Learning JavaScript Design Patterns</a> by Addy Osmani: 인상적인 간결함 속에서 보물을 발견할 수 있음
-<a href="http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html" target="_blank">Adequately Good by Ben Cherry</a> 모듈패턴에 익숙한 사람들을 위해 예제를 포함한 유용한 개요
-<a href="https://carldanley.com/js-module-pattern/" target="_blank">Blog of Carl Danley</a>모듈패턴의 개요 및 다른 자바스크립트 패턴들의 리소스
+[Learning JavaScript Design Patterns](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript) by Addy Osmani: 인상적인 간결함 속에서 보물을 발견할 수 있음
+
+[Adequately Good by Ben Cherry](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html) 모듈패턴에 익숙한 사람들을 위해 예제를 포함한 유용한 개요
+
+[Blog of Carl Danley](https://carldanley.com/js-module-pattern/) 모듈패턴의 개요 및 다른 자바스크립트 패턴들의 리소스
 
 ### CommonJS and AMD
 
@@ -284,15 +284,15 @@ CommonJS 모듈은 다음과 같은 형식일겁니다.
 ```js
 function myModule() {
   this.hello = function () {
-    return "hello!"
-  }
+    return "hello!";
+  };
 
   this.goodbye = function () {
-    return "goodbye!"
-  }
+    return "goodbye!";
+  };
 }
 
-module.exports = myModule
+module.exports = myModule;
 ```
 
 우리는 특별한 객체 모듈을 사용할 수 있고 함수를 *module.exports*에 참조시킬 수 있습니다. 이것은 다른 파일에서 사용하기위해 무엇을 공개할건지 CommonJS 모듈시스템에 알려주는겁니다.
@@ -300,11 +300,11 @@ module.exports = myModule
 누군가 위의 myModule을 사용하길 원한다면 아래와 같이 *require*를 통해 가능합니다.
 
 ```js
-var myModule = require("myModule")
+var myModule = require("myModule");
 
-var myModuleInstance = new myModule()
-myModuleInstance.hello() // 'hello!'
-myModuleInstance.goodbye() // 'goodbye!'
+var myModuleInstance = new myModule();
+myModuleInstance.hello(); // 'hello!'
+myModuleInstance.goodbye(); // 'goodbye!'
 ```
 
 좀전에 나왔던 모듈패턴에는 두가지 확실한 장점이 있습니다.
@@ -325,8 +325,8 @@ AMD는 이런겁니다.
 
 ```js
 define(["myModule", "myOtherModule"], function (myModule, myOtherModule) {
-  console.log(myModule.hello())
-})
+  console.log(myModule.hello());
+});
 ```
 
 여기서 define 함수는 이 모듈이 의존적인 모듈의 배열로 첫번째 매개변수를 받습니다. 이 의존성은 백그라운드에 로드됩니다.(non-blocking한 방식으로) 그리고 로드가 끝나면 define 함수는 가지고있던 콜백함수를 호출합니다.
@@ -339,13 +339,13 @@ define(["myModule", "myOtherModule"], function (myModule, myOtherModule) {
 define([], function () {
   return {
     hello: function () {
-      console.log("hello")
+      console.log("hello");
     },
     goodbye: function () {
-      console.log("goodbye")
+      console.log("goodbye");
     },
-  }
-})
+  };
+});
 ```
 
 그래서 CommonJS와는 다르게 AMD는 brower-first한 비동기적 접근입니다.
@@ -360,16 +360,16 @@ UMD는 또다른 전역변수 정의를 지원하면서 위의 두가지를 필�
 UMD는 아래처럼 동작합니다.
 
 ```js
-;(function (root, factory) {
+(function (root, factory) {
   if (typeof define === "function" && define.amd) {
     // AMD
-    define(["myModule", "myOtherModule"], factory)
+    define(["myModule", "myOtherModule"], factory);
   } else if (typeof exports === "object") {
     // CommonJS
-    module.exports = factory(require("myModule"), require("myOtherModule"))
+    module.exports = factory(require("myModule"), require("myOtherModule"));
   } else {
     // Browser globals (Note: root is window)
-    root.returnExports = factory(root.myModule, root.myOtherModule)
+    root.returnExports = factory(root.myModule, root.myOtherModule);
   }
 })(this, function (myModule, myOtherModule) {
   // Methods
@@ -381,11 +381,11 @@ UMD는 아래처럼 동작합니다.
   return {
     hello: hello,
     goodbye: goodbye,
-  }
-})
+  };
+});
 ```
 
-더 많은 UMD의 형식을 보고싶다면 <a href="https://github.com/umdjs/umd" target="_blank">이 곳</a>을 참조하세요.
+더 많은 UMD의 형식을 보고싶다면 [이 곳](https://github.com/umdjs/umd)을 참조하세요.
 
 **Native JS**
 잘 따라오고 계신가요? 아직 한가지 모듈타입이 더 남았습니다.
@@ -394,8 +394,8 @@ UMD는 아래처럼 동작합니다.
 
 ES6는 importing과 exporting에 대해 많은 가능성을 제시합니다. 여기 몇가지 리소스가 있습니다.
 
-<a href="http://jsmodules.io/cjs.html" target="_blank">jsmodules.io</a>
-<a href="http://exploringjs.com/es6/ch_modules.html" target="_blank">exploringjs.com</a><br>
+[jsmodules.io](http://jsmodules.io/cjs.html)
+[exploringjs.com](http://exploringjs.com/es6/ch_modules.html)
 
 ES6에서 대단한것은 CommonJS나 AMD의 두 세상을 동시에 제공하는 방법입니다. 간단하고 선언적인 문법, 비동기적 로딩에다가 더해서 의존성관리도 더 잘해줍니다. 아마 제가 가장좋아하는 ES6의 모듈기능은 읽기전용뷰의 exports에서 살아있다는 것입니다.(CommonJS에서는 imports할때, exports를 복사하기때문에 살아있지않습니다.)
 
@@ -404,28 +404,28 @@ ES6에서 대단한것은 CommonJS나 AMD의 두 세상을 동시에 제공하�
 ```js
 // lib/counter.js
 
-var counter = 1
+var counter = 1;
 
 function increment() {
-  counter++
+  counter++;
 }
 
 function decrement() {
-  counter--
+  counter--;
 }
 
 module.exports = {
   counter: counter,
   increment: increment,
   decrement: decrement,
-}
+};
 
 // src/main.js
 
-var counter = require("../../lib/counter")
+var counter = require("../../lib/counter");
 
-counter.increment()
-console.log(counter.counter) // 1
+counter.increment();
+console.log(counter.counter); // 1
 ```
 
 이 예제에서 기본적으로 두가지 모듈의 복사가 일어납니다. 하나는 export했을때, 두번째는 require 했을때.
@@ -435,30 +435,30 @@ console.log(counter.counter) // 1
 import한 counter 변수가 카피한 counter 변수와 연결 되어 있지 않기 때문입니다. 그래서 모듈에서 counter 변수를 증가시켜도 카피버전에서는 증가하지 않는것입니다. 카피버전의 counter를 증가시키려면 다음과 같이 할수 밖에 없습니다.
 
 ```js
-counter.counter++
-console.log(counter.counter) // 2
+counter.counter++;
+console.log(counter.counter); // 2
 ```
 
 반면 ES6에서는 살아있는(live) 읽기전용 뷰 모듈을 생성할 수 있습니다.
 
 ```js
 // lib/counter.js
-export let counter = 1
+export let counter = 1;
 
 export function increment() {
-  counter++
+  counter++;
 }
 
 export function decrement() {
-  counter--
+  counter--;
 }
 
 // src/main.js
-import * as counter from "../../counter"
+import * as counter from "../../counter";
 
-console.log(counter.counter) // 1
-counter.increment()
-console.log(counter.counter) // 2
+console.log(counter.counter); // 1
+counter.increment();
+console.log(counter.counter); // 2
 ```
 
 멋지지않나요? 살아있는 읽기전용 뷰는 당신의 모듈을 기능적인 손실없이 더 작은 모듈로 나눌수 있게 합니다. 그리고 그걸 합치면 문제없이 동작합니다.

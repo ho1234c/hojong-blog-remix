@@ -8,9 +8,12 @@ import dayjs from "dayjs";
 const POSTS_PATH = path.join(process.cwd(), "app", "posts");
 
 export async function getPosts() {
-  const testPath = await fs.promises.readdir(path.join(process.cwd(), "apps"), {
-    withFileTypes: true,
-  });
+  const testPath = await fs.promises.readdir(
+    path.join(process.cwd(), "apps", "client"),
+    {
+      withFileTypes: true,
+    }
+  );
   console.log({ testPath });
 
   const postsPath = await fs.promises.readdir(POSTS_PATH, {

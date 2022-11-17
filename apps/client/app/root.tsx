@@ -8,6 +8,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import Header, { links as HeaderLinks } from "~/components/Header";
+import globalStylesUrl from "./styles/global.css";
+import layoutStylesUrl from "./styles/layout.css";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -16,7 +19,10 @@ export const meta: MetaFunction = () => ({
 });
 
 export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: globalStylesUrl },
   { rel: "stylesheet", href: codeHikeStyles },
+  { rel: "stylesheet", href: layoutStylesUrl },
+  ...HeaderLinks(),
 ];
 
 export default function App() {
@@ -27,7 +33,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Header siteTitle={"hojong blog"} />
+        <main>
+          <Outlet />
+        </main>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

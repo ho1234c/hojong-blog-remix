@@ -47,9 +47,9 @@ const Header: React.FC<Props> = (props) => {
         <div className="go-to-main">
           <Link to="/">{props.siteTitle}</Link>
         </div>
-        {/* <div className="go-to-me">
+        <div className="go-to-me">
           <Link to="/me">About me</Link>
-        </div> */}
+        </div>
       </div>
     </header>
   );

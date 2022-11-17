@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import { bundleMDX } from "~/utils/mdx.server";
 
-const POSTS_PATH = path.join(__dirname, "..", "posts");
+const POSTS_PATH = path.join(process.cwd(), "posts");
 
 export async function getPost(slug: string) {
   const source = await fs.promises.readFile(

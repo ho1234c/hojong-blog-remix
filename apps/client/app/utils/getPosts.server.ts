@@ -5,11 +5,11 @@ import fs from "fs";
 import path from "path";
 import dayjs from "dayjs";
 
-const POSTS_PATH = path.join(process.cwd(), "app", "posts");
+const POSTS_PATH = path.join(process.cwd(), "apps", "client", "api", "app");
 
 export async function getPosts() {
   const testPath = await fs.promises.readdir(
-    path.join(process.cwd(), "apps", "client"),
+    path.join(process.cwd(), "apps", "client", "api"),
     {
       withFileTypes: true,
     }

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "remix build",
+    "afterbuild": "cp posts/**/* apps/client/api/app",
     "dev": "remix dev"
   },
   "dependencies": {
@@ -11,6 +12,7 @@
     "@remix-run/node": "^1.6.8",
     "@remix-run/react": "^1.6.8",
     "@remix-run/vercel": "^1.6.8",
+    "@supabase/supabase-js": "^2.1.0",
     "@vercel/node": "^2.4.4",
     "dayjs": "^1.11.6",
     "front-matter": "^4.0.2",

@@ -1,26 +1,17 @@
 import theme from "shiki/themes/monokai.json";
 import { remarkCodeHike } from "@code-hike/mdx";
-import fs from "fs";
-import path from "path";
 import { bundleMDX } from "~/utils/mdx.server";
-
-const POSTS_PATH = path.join(
-  process.cwd(),
-  "apps",
-  "client",
-  "api",
-  "app",
-  "posts"
-);
+import { supabase } from "~/utils/supabaseClient.server";
 
 export async function getPost(slug: string) {
-  const source = await fs.promises.readFile(
-    path.join(POSTS_PATH, slug + ".mdx"),
-    "utf-8"
-  );
+  let { data: rawPost } = await supabase
+    .from("posts")
+    .select("title,created_at,content,slug")
+    .eq("slug", slug)
+    .single();
 
   const post = await bundleMDX({
-    source,
+    source: rawPost?.content,
     mdxOptions(options, frontmatter) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),

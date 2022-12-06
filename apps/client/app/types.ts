@@ -1,8 +1,15 @@
 export type PostMeta = {
   title: string;
-  date: string;
+  created_at: string;
   tags?: string[];
   draft?: boolean;
+  slug: string;
 };
 
-export type EnhancedPostMeta = PostMeta & { slug: string };
+export type PostDetail = {
+  title: string;
+  created_at: string;
+  tags?: string[];
+  slug: string;
+  content: string;
+};

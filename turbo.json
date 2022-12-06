@@ -2,7 +2,11 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build",
+        "$REACT_APP_SUPABASE_URL",
+        "$REACT_APP_SUPABASE_ANON_KEY"
+      ],
       "outputs": ["dist/**", "build/**", "api/**", "public/build/**"]
     },
     "lint": {

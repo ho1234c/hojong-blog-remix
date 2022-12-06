@@ -1,11 +1,12 @@
 import type { LoaderFunction, LinksFunction } from "@remix-run/node";
-import type { EnhancedPostMeta } from "~/types";
+import type { PostMeta } from "~/types";
 import { useLoaderData } from "@remix-run/react";
 import { Home, links as homeLinks } from "~/components/Home";
 import { getPosts } from "~/utils/getPosts.server";
+import { supabase } from "~/utils/supabaseClient.server";
 
 type LoaderData = {
-  posts: EnhancedPostMeta[];
+  posts: PostMeta[];
 };
 
 export const links: LinksFunction = () => {
@@ -13,7 +14,7 @@ export const links: LinksFunction = () => {
 };
 
 export const loader: LoaderFunction = async () => {
-  return getPosts();
+  return await getPosts();
 };
 
 export default function Index() {

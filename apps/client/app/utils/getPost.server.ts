@@ -15,7 +15,7 @@ export async function getPost(slug: string) {
     mdxOptions(options, frontmatter) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        [remarkCodeHike, { theme }],
+        // [remarkCodeHike, { theme }],
       ];
 
       return options;

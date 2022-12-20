@@ -1,4 +1,4 @@
-import theme from "shiki/themes/monokai.json";
+import { theme } from "~/styles/remarkTheme";
 import { remarkCodeHike } from "@code-hike/mdx";
 import { bundleMDX } from "~/utils/mdx.server";
 import { supabase } from "~/utils/supabaseClient.server";
@@ -15,7 +15,7 @@ export async function getPost(slug: string) {
     mdxOptions(options, frontmatter) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        // [remarkCodeHike, { theme }],
+        [remarkCodeHike, { theme }],
       ];
 
       return options;

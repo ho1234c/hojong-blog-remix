@@ -8,4 +8,5 @@ module.exports = {
   assetsBuildDirectory: "public/build",
   publicPath: "/build/",
   watchPaths: ["posts/*"],
+  serverDependenciesToBundle: ["shiki"],
 };

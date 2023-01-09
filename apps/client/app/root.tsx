@@ -1,4 +1,3 @@
-import codeHikeStyles from "@code-hike/mdx/dist/index.css";
 import type { MetaFunction, LinksFunction } from "@remix-run/node";
 import {
   Links,
@@ -20,7 +19,6 @@ export const meta: MetaFunction = () => ({
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: globalStylesUrl },
-  { rel: "stylesheet", href: codeHikeStyles },
   { rel: "stylesheet", href: layoutStylesUrl },
   ...HeaderLinks(),
 ];

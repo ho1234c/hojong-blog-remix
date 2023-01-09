@@ -59,7 +59,7 @@ p:has(img):has(+ small) {
   margin-bottom: 0.8rem;
 }
 
-code[class*="language-"],
+/* code[class*="language-"],
 pre[class*="language-"] {
   font-size: 1.4rem;
-}
+} */

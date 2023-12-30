@@ -3,7 +3,6 @@ import type { PostMeta } from "~/types";
 import { useLoaderData } from "@remix-run/react";
 import { Home, links as homeLinks } from "~/components/Home";
 import { getPosts } from "~/utils/getPosts.server";
-import { supabase } from "~/utils/supabaseClient.server";
 
 type LoaderData = {
   posts: PostMeta[];

@@ -9,4 +9,5 @@ module.exports = {
   publicPath: "/build/",
   watchPaths: ["posts/*"],
   serverDependenciesToBundle: ["shiki", "@mdx-js"],
+  serverModuleFormat: "cjs"
 };

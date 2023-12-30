@@ -1,4 +1,4 @@
-import type { MetaFunction, LinksFunction } from "@remix-run/node";
+import { cssBundleHref } from "@remix-run/css-bundle";
 import {
   Links,
   LiveReload,
@@ -7,26 +7,23 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import Header, { links as HeaderLinks } from "~/components/Header";
-import globalStylesUrl from "./styles/global.css";
-import layoutStylesUrl from "./styles/layout.css";
+import type { LinksFunction } from "@vercel/remix";
+import { Header } from "~/components/Header";
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "hojong blog",
-  viewport: "width=device-width,initial-scale=1",
-});
+import "./styles/global.css";
+import "./styles/layout.css";
 
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: globalStylesUrl },
-  { rel: "stylesheet", href: layoutStylesUrl },
-  ...HeaderLinks(),
+  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
 export default function App() {
   return (
     <html lang="kr">
       <head>
+        <meta charSet="utf-8" />
+        <meta title="hojong blog" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>

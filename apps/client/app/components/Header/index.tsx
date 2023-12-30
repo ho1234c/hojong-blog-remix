@@ -1,20 +1,12 @@
-import type { LinksFunction } from "@remix-run/node";
-import React, { useState, useEffect } from "react";
+import { type FC, useState, useEffect } from "react";
 import { Link } from "@remix-run/react";
-import styles from "./index.css";
+import styles from "./index.module.css";
 
 type Props = {
   siteTitle: string;
 };
 
-export const links: LinksFunction = () => [
-  {
-    rel: "stylesheet",
-    href: styles,
-  },
-];
-
-const Header: React.FC<Props> = (props) => {
+export const Header: FC<Props> = (props) => {
   const [scrollPos, setScrollPos] = useState(() => 0);
   const [headerYPos, setHeaderYPos] = useState(() => 0);
 
@@ -40,11 +32,11 @@ const Header: React.FC<Props> = (props) => {
 
   return (
     <header
-      className="header"
+      className={styles.header}
       style={{ transform: `translateY(${headerYPos}px)` }}
     >
-      <div className="menu">
-        <div className="go-to-main">
+      <div className={styles.menu}>
+        <div className={styles["go-to-main"]}>
           <Link to="/">{props.siteTitle}</Link>
         </div>
         {/* <div className="go-to-me">
@@ -54,5 +46,3 @@ const Header: React.FC<Props> = (props) => {
     </header>
   );
 };
-
-export default Header;

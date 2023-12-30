@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import { Post, links as postLinks } from "~/components/Post";
@@ -14,8 +14,8 @@ type LoaderData = {
   createdAt: string;
 };
 
-export const loader: LoaderFunction = async ({ params, request }) => {
-  const slug = params["*"];
+export async function loader({ params, request }: LoaderFunctionArgs) {
+  const slug = params.slug;
   if (!slug) throw new Response("Not found", { status: 404 });
 
   const data = await getPost(slug);
@@ -25,10 +25,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 
   throw new Response("Not found", { status: 404 });
-};
+}
 
 export default function PostPage() {
-  const { postHtml, title, createdAt } = useLoaderData<LoaderData>();
+  const { postHtml, title } = useLoaderData<LoaderData>();
 
   return <Post title={title} html={postHtml} />;
 }

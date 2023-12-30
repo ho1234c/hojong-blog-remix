@@ -1,9 +1,22 @@
 import { supabase } from "~/utils/supabaseClient.server";
-import { marked } from "marked";
+import { Marked } from "marked";
+import { markedHighlight } from "marked-highlight";
 import loadLanguages from "prismjs/components/";
 import prism from "prismjs";
 
 loadLanguages(["bash", "css", "ts", "js", "html", "jsx", "tsx"]);
+
+const marked = new Marked(
+  markedHighlight({
+    highlight: function (code, lang) {
+      try {
+        return prism.highlight(code, prism.languages[lang], lang);
+      } catch {
+        return code;
+      }
+    },
+  })
+);
 
 const renderer = new marked.Renderer();
 renderer.code = function (code, lang, escaped) {
@@ -20,13 +33,6 @@ renderer.code = function (code, lang, escaped) {
 export async function getPost(slug: string) {
   marked.setOptions({
     renderer,
-    highlight: function (code, lang) {
-      try {
-        return prism.highlight(code, prism.languages[lang], lang);
-      } catch {
-        return code;
-      }
-    },
   });
   const { data: rawPost } = await supabase
     .from("posts")

@@ -62,6 +62,7 @@
 
 .description section ul li {
   list-style: none;
+  margin-bottom: 8px;
 }
 
 .icon {

@@ -79,6 +79,8 @@ export const AboutMe: FC = () => {
               <AnimateText id="work-2" begin="0.5s">
                 귀찮음을 해결하면서 동기부여됩니다
               </AnimateText>
+            </li>
+            <li>
               <AnimateText id="work-2" begin="0.5s">
                 언제든 내가 틀릴 수 있음을 염두하며
               </AnimateText>

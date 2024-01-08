@@ -1,6 +1,5 @@
-import type { LoaderFunction, LinksFunction } from "@remix-run/node";
-import type { EnhancedPostMeta } from "~/types";
+import { AboutMe } from "~/components/AboutMe";
 
-export default function Me() {
-  return <div>aaa</div>;
+export default function () {
+  return <AboutMe />;
 }

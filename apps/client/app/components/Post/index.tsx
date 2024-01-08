@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import stylesUrl from "./styles.css";
-import prismStyles from "prismjs/themes/prism.min.css";
 import prismStylesTheme from "prismjs/themes/prism-tomorrow.min.css";
 import markdownStylesUrl from "./markdown.css";
 import type { LinksFunction } from "@remix-run/node";

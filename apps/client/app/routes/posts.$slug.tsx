@@ -27,7 +27,7 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   throw new Response("Not found", { status: 404 });
 }
 
-export default function PostPage() {
+export default function () {
   const { postHtml, title } = useLoaderData<LoaderData>();
 
   return <Post title={title} html={postHtml} />;

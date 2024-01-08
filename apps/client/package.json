@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "remix build",
-    "afterbuild": "cp posts/**/* apps/client/api/app",
     "dev": "remix dev",
     "gentype": "supabase gen types typescript --local > types/database.types.ts"
   },
@@ -17,6 +16,7 @@
     "@types/prismjs": "^1.26.0",
     "@vercel/node": "^3.0.7",
     "@vercel/remix": "^2.1.0",
+    "clsx": "^2.1.0",
     "dayjs": "^1.11.6",
     "front-matter": "^4.0.2",
     "isbot": "^3.6.1",

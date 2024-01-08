@@ -1,0 +1,17 @@
+.profile_frame .border {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: 1s dash 2.1s ease forwards;
+}
+
+@media (min-width: 768px) {
+  .profile_frame .border {
+    animation: dash 1s ease forwards;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

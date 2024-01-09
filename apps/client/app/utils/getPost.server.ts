@@ -24,8 +24,6 @@ renderer.code = function (code, lang, escaped) {
     return `<pre><code>${code}</code></pre>`;
   }
 
-  code = prism.highlight(code, prism.languages[lang], lang);
-
   const langClass = "language-" + lang;
   return `<pre class="${langClass}"><code class="${langClass}">${code}</code></pre>`;
 };
@@ -34,6 +32,7 @@ export async function getPost(slug: string) {
   marked.setOptions({
     renderer,
   });
+
   const { data: rawPost } = await supabase
     .from("posts")
     .select("title,created_at,content,slug")

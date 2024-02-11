@@ -39,7 +39,7 @@ export async function getPost(slug: string) {
     .eq("slug", slug)
     .single();
 
-  const postHtml = marked.parse(rawPost?.content);
+  const postHtml = marked.parse(rawPost?.content ?? "");
   const title = rawPost?.title;
   const createdAt = rawPost?.created_at;
 

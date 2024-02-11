@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev",
+    "dev": "PORT=4321 remix dev",
     "gentype": "npx supabase gen types typescript --project-id srvkghznihrfjngebfzp --schema public > types/database.types.ts"
   },
   "dependencies": {

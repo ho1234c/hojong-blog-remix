@@ -63,3 +63,13 @@ code[class*="language-"],
 pre[class*="language-"] {
   font-size: 1.4rem;
 }
+
+blockquote {
+  border-left: .75rem solid hsl(0 0% 90% / 65%);
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
+ul {
+  padding-left: 3rem;
+}

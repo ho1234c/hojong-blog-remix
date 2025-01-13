@@ -345,3 +345,9 @@ label > [type="radio"] {
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
 }
+
+blockquote {
+  border-left: .8rem solid var(--color-border);
+  margin-left: 0;
+  padding-left: 1rem;
+}

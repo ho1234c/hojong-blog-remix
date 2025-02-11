@@ -18,15 +18,18 @@ const isDesktop =
 export const AboutMe: FC = () => {
   const [isShowProfile, setIsShowProfile] = useState(false);
 
-  useLayoutEffect(() => {
+  useLayoutEffect(function adjustImageVisibilityForDesktop() {
     setIsShowProfile(isDesktop);
   }, []);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsShowProfile(true), 1500);
+  useEffect(
+    function triggerProfileAnimation() {
+      const timeout = setTimeout(() => setIsShowProfile(true), 1500);
 
-    return () => clearTimeout(timeout);
-  }, [isShowProfile]);
+      return () => clearTimeout(timeout);
+    },
+    [isShowProfile]
+  );
 
   return (
     <div className={styles.container}>

@@ -1,7 +1,7 @@
 import { AnimateText } from "./AnimateText";
 import Profile from "./Profile";
 import styles from "./index.module.css";
-import { useState, type FC, useEffect } from "react";
+import { useState, type FC, useEffect, useLayoutEffect } from "react";
 import githubIconUrl from "./icons/github.svg";
 import instagramIconUrl from "./icons/instagram.svg";
 import mailIconUrl from "./icons/mail.svg";
@@ -16,7 +16,11 @@ const isDesktop =
     : window.matchMedia(`(min-width: 768px)`).matches;
 
 export const AboutMe: FC = () => {
-  const [isShowProfile, setIsShowProfile] = useState(() => isDesktop);
+  const [isShowProfile, setIsShowProfile] = useState(false);
+
+  useLayoutEffect(() => {
+    setIsShowProfile(isDesktop);
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => setIsShowProfile(true), 1500);
@@ -27,10 +31,10 @@ export const AboutMe: FC = () => {
   return (
     <div className={styles.container}>
       <section
-        className={clsx(
-          styles.profile_wrapper,
-          isShowProfile ? styles.show : ""
-        )}
+        className={clsx({
+          [styles.profile_wrapper]: true,
+          [styles.show]: isShowProfile,
+        })}
       >
         <Profile />
         <div className={styles.address}>
@@ -71,7 +75,7 @@ export const AboutMe: FC = () => {
           </h4>
           <ul>
             <li>
-              <AnimateText id="work-1">
+              <AnimateText id="work-1" begin="0.3s">
                 why와 how를 모두 중요히 생각합니다
               </AnimateText>
             </li>
@@ -81,10 +85,10 @@ export const AboutMe: FC = () => {
               </AnimateText>
             </li>
             <li>
-              <AnimateText id="work-2" begin="0.5s">
+              <AnimateText id="work-3" begin="0.8s">
                 언제든 내가 틀릴 수 있음을 염두하며
               </AnimateText>
-              <AnimateText id="work-2" begin="0.5s">
+              <AnimateText id="work-4" begin="1s">
                 이미 결정된것에 최선을 다합니다
               </AnimateText>
             </li>
@@ -97,7 +101,7 @@ export const AboutMe: FC = () => {
           </h4>
           <ul>
             <li>
-              <AnimateText id="life-1">
+              <AnimateText id="life-1" begin="0.2s">
                 작은 목표를 세우고 꾸준히 해나가는 것을 잘합니다
               </AnimateText>
             </li>

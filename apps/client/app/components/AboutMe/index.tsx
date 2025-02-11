@@ -84,12 +84,12 @@ export const AboutMe: FC = () => {
             </li>
             <li>
               <AnimateText id="work-2" begin="0.5s">
-                귀찮음을 해결하면서 동기부여됩니다
+                작고 빠르게 시도합니다
               </AnimateText>
             </li>
             <li>
               <AnimateText id="work-3" begin="0.8s">
-                언제든 내가 틀릴 수 있음을 염두하며
+                언제든 내가 틀릴 수 있음을 인정하며
               </AnimateText>
               <AnimateText id="work-4" begin="1s">
                 이미 결정된것에 최선을 다합니다
@@ -105,7 +105,7 @@ export const AboutMe: FC = () => {
           <ul>
             <li>
               <AnimateText id="life-1" begin="0.2s">
-                작은 목표를 세우고 꾸준히 해나가는 것을 잘합니다
+                작은 목표를 세우고 꾸준히 해나갑니다
               </AnimateText>
             </li>
             <li>
@@ -138,7 +138,7 @@ export const AboutMe: FC = () => {
             </li>
             <li>
               <AnimateText id="code-3" begin="0.5s">
-                리팩토링의 필요를 이해하고 짧은 주기로 수행합니다
+                짧은 주기로 리팩토링 합니다
               </AnimateText>
             </li>
           </ul>

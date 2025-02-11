@@ -17,8 +17,8 @@ export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
   {
     rel: "icon",
-    href: "/favicon.png",
-    type: "image/png",
+    href: "/favicon.ico",
+    type: "image/x-icon",
   },
 ];
 

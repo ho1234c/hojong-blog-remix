@@ -63,7 +63,7 @@ export const AboutMe: FC = () => {
 
       <section className={styles.description}>
         <section>
-          <AnimateText id="first">
+          <AnimateText id="first" begin="0.1s" dur="2s">
             소프트웨어 엔지니어 정종호 입니다
           </AnimateText>
           <AnimateText id="second" begin="0.5s" dur="2s">
@@ -127,17 +127,17 @@ export const AboutMe: FC = () => {
           </h4>
           <ul>
             <li>
-              <AnimateText id="code-1" dur="2s">
+              <AnimateText id="code-1" begin="0.8s" dur="2s">
                 선언형을 선호합니다
               </AnimateText>
             </li>
             <li>
-              <AnimateText id="code-2" dur="1s">
+              <AnimateText id="code-2" begin="0.1s" dur="2s">
                 테스트 코드의 가치에 공감합니다
               </AnimateText>
             </li>
             <li>
-              <AnimateText id="code-3" begin="0.5s">
+              <AnimateText id="code-3" begin="0.5s" dur="2s">
                 짧은 주기로 리팩토링 합니다
               </AnimateText>
             </li>

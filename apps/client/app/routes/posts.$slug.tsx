@@ -9,17 +9,24 @@ export const links: LinksFunction = () => {
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
+  const metaTags = [
     { title: data?.title },
     { property: "og:type", content: "article" },
     { property: "og:site_name", content: "hojong blog" },
   ];
+
+  if (data?.ogImage) {
+    metaTags.push({ property: "og:image", content: data.ogImage });
+  }
+
+  return metaTags;
 };
 
 type LoaderData = {
   postHtml: string;
   title: string;
   createdAt: string;
+  ogImage: string | null;
 };
 
 export async function loader({ params, request }: LoaderFunctionArgs) {

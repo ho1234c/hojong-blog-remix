@@ -35,13 +35,14 @@ export async function getPost(slug: string) {
 
   const { data: rawPost } = await supabase
     .from("posts")
-    .select("title,created_at,content,slug")
+    .select("title,created_at,content,slug,og_image")
     .eq("slug", slug)
     .single();
 
   const postHtml = marked.parse(rawPost?.content ?? "");
   const title = rawPost?.title;
   const createdAt = rawPost?.created_at;
+  const ogImage = rawPost?.og_image;
 
-  return { title, postHtml, createdAt };
+  return { title, postHtml, createdAt, ogImage };
 }
